@@ -1,18 +1,18 @@
 class Solution {
 public:
     int totalFruit(vector<int>& fruits) {
-        int n = fruits.size(), l = 0, r = 0;
-        int maxlen = 0;
+        int left = 0, right = 0, maxlen = 0;
+        int n = fruits.size();
         unordered_map<int, int> mpp;
-        while(r < n){
-            mpp[fruits[r]]++;
-            if(mpp.size() > 2){
-                mpp[fruits[l]]--;
-                if(mpp[fruits[l]] == 0) mpp.erase(fruits[l]);
-                l++;
-            }
-            maxlen = max(maxlen, r-l+1);
-            r++;
+        while(right < n){
+          mpp[fruits[right]]++;
+          if(mpp.size() > 2){
+            mpp[fruits[left]]--;
+            if(mpp[fruits[left]] == 0) mpp.erase(fruits[left]);
+            left++;
+          }
+          maxlen = max(maxlen, right-left+1);
+          right++;
         }
         return maxlen;
     }
